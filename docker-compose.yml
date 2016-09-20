@@ -3,12 +3,15 @@ services:
     lab:
         build: .
         environment:
-            - DATABASE_DRIVER=pq
+            - DATABASE_CLIENT=pg
+            - DATABASE_HOST=database
+            - DATABASE_PORT=5432
             - DATABASE_PASSWORD=password
-            - DATABASE_USER=username
-            - DATABASE_DB=lab
+            - DATABASE_USERNAME=username
+            - DATABASE_DATABASE=lab
+            - DEBUG=knex:tx
         links:
-            - postgres
+            - postgres:database
         volumes:
             - .:/opt/lab
     postgres:
