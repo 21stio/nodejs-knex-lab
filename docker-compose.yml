@@ -1,0 +1,19 @@
+version: '2'
+services:
+    lab:
+        build: .
+        environment:
+            - DATABASE_DRIVER=pq
+            - DATABASE_PASSWORD=password
+            - DATABASE_USER=username
+            - DATABASE_DB=lab
+        links:
+            - postgres
+        volumes:
+            - .:/opt/lab
+    postgres:
+        image: postgres
+        environment:
+            - POSTGRES_PASSWORD=password
+            - POSTGRES_USER=username
+            - POSTGRES_DB=lab
